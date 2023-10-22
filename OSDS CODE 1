@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> OSDS[일성도성]</title>
+    <link rel="stylesheet" href="./commons/css/index.css">
+</head>
+<body>
+    <div id="wrap">
+        <div id="header">
+            <h1 id="logo">
+                <a href="#"><img src="./image/일성도성.png"/></a>
+            </h1>
+            <div id="gnb">
+                <ul>
+                    <li><a href="#">OSDS 소개</a></li>
+                    <li><a href="#">인천 소개</a></li>
+                    <li><a href="#">추천 장소</a></li>
+                    <li><a href="#">장소 추천</a></li>
+                    <li><a href="#">Q&A</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="visual">
+            <img src="./image/비주얼1.png">
+        </div>
+
+    </div>
+</body>
+</html>
