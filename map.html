@@ -83,7 +83,7 @@
 
         #buttons {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(5, 1fr);
             gap: 10px;
             margin: 20px;
         }
@@ -125,14 +125,16 @@
     </div>
     
     <div id="buttons">
-        <button class="button" onclick="showContent('부평구', 37.4852, 126.7234)">부평구</button>
-        <button class="button" onclick="showContent('남동구', 37.4485, 126.7369)">남동구</button>
-        <button class="button" onclick="showContent('미추홀구', 37.4494, 126.6619)">미추홀구</button>
-        <button class="button" onclick="showContent('중구', 37.4647, 126.6641)">중구</button>
-        <button class="button" onclick="showContent('동구', 37.4748, 126.6422)">동구</button>
-        <button class="button" onclick="showContent('서구', 37.5464, 126.6428)">서구</button>
-        <button class="button" onclick="showContent('계양구', 37.5437, 126.7378)">계양구</button>
-        <button class="button" onclick="showContent('연수구', 37.4172, 126.7098)">연수구</button>
+        <button class="button" onclick="showContent('부평구', 37.4966725,126.7212089)">부평구</button>
+        <button class="button" onclick="showContent('남동구', 37.4310147,126.726484)">남동구</button>
+        <button class="button" onclick="showContent('미추홀구', 37.452589,126.6646603)">미추홀구</button>
+        <button class="button" onclick="showContent('중구', 37.4760518,126.4685024)">중구</button>
+        <button class="button" onclick="showContent('동구', 37.483194,126.6395359)">동구</button>
+        <button class="button" onclick="showContent('서구', 37.5578549,126.6561702)">서구</button>
+        <button class="button" onclick="showContent('계양구', 37.5572857,126.734707)">계양구</button>
+        <button class="button" onclick="showContent('연수구', 37.3968576,126.648872)">연수구</button>
+        <button class="button" onclick="showContent('강화군', 37.7065047,126.4433977)">강화군</button>
+        <button class="button" onclick="showContent('옹진군', 37.9535884,124.6778869)">옹진군</button>
     </div>
 
     <div id="content">
@@ -185,7 +187,7 @@
             window.initMap = function () {
                 var map = new google.maps.Map(document.getElementById('map'), {
                     center: center,
-                    zoom: 14
+                    zoom: 12
                 });
             };
 
@@ -220,6 +222,42 @@
             } else {
                 showSlide(totalSlides - 1);
             }
+        }
+
+        var map; // 전역 변수로 map 선언
+
+        function showContent(location, lat, lng) {
+            // Google Maps API를 사용하여 지도 표시 (실제 키와 API 호출 부분은 개발자가 직접 구현해야 합니다.)
+            showMap(location, lat, lng);
+
+            // '중구'를 선택한 경우에만 지도에 핀을 꽂고 설명을 추가
+            if (location === '중구') {
+                addMapMarker(lat, lng, '차이나타운', '차이나타운에 대한 설명이 여기에 들어갑니다.');
+                addMapMarker(lat + 0.01, lng, '월미도', '월미도에 대한 설명이 여기에 들어갑니다.'); // 임시 위치 조정, 실제로는 정확한 좌표 사용 필요
+            }
+        }
+
+        function addMapMarker(lat, lng, label, description) {
+            // Google Maps API를 사용하여 지도에 핀을 꽂는 코드 (실제 키와 API 호출 부분은 개발자가 직접 구현해야 합니다.)
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: lat, lng: lng },
+                zoom: 13
+            });
+
+            var marker = new google.maps.Marker({
+                position: { lat: lat, lng: lng },
+                map: map,
+                title: label
+            });
+
+            // 해당 장소에 대한 설명을 마커 클릭 시 정보 창으로 표시
+            var infowindow = new google.maps.InfoWindow({
+                content: description
+            });
+
+            marker.addListener('click', function () {
+                infowindow.open(map, marker);
+            });
         }
     </script>
 
