@@ -1,0 +1,44 @@
+header {
+    height:100px;
+    position: relative;
+}
+header #logo {
+    position:absolute;
+    top: 10px;
+    left: 20px;
+}
+header #top_menu {
+    position: absolute;
+    top: 10px;
+    left: 650px;
+}
+header #main_menu {
+    width: 800px;
+    height: 55px;
+    background-color:#0f90aa;
+    background-repeat: no-repeat;
+    position:absolute;
+    top: 40px;
+    left: 250px;
+}
+header #main_menu li {
+    display: inline-block;
+    margin: 3px 20px 0 40px;
+    font-size: 15px;
+}
+header #main_menu a:link {
+    text-decoration:none;
+    color:#ffffff;
+}
+header #main_menu a:hover {
+    text-decoration:none;
+    color:#ffffff;
+}
+header #main_menu a:visited {
+    text-decoration:none;
+    color:#ffffff
+}
+header #main_menu a:active {
+    text-decoration: none;
+    color:#ffffff;
+}
