@@ -125,6 +125,23 @@
             padding: 5px;
             text-align: center;
         }
+        #map-container {
+            flex: 1;
+            height: 500px; /* 초기 높이 설정 */
+            margin-left: 4%;
+            overflow: hidden; /* 지도 크기가 조정될 때 내용이 넘치지 않도록 함 */
+            position: relative;
+        }
+
+        #map-resize-handle {
+            width: 10px;
+            height: 10px;
+            background-color: #4285f4;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            cursor: nwse-resize; /* 대각선 리사이징 커서 설정 */
+        }
     </style>
 </head>
 <body>
@@ -168,10 +185,16 @@
             <button class="slider-button" id="next-button" onclick="showNextSlide()">❯</button>
         </div>
 
-        <div id="map"></div>
+        <div id="map-container">
+            <!-- 지도 크기 조정 핸들 -->
+            <div id="map-resize-handle"></div>
+            <!-- 실제 지도 -->
+            <div id="map"></div>
+        </div>
     </div>
 
     <script>
+                // 페이지 로드 시 실행될 함수
                 window.onload = function () {
             // 인천광역시의 위도와 경도
             var incheonLatLng = { lat: 37.4563, lng: 126.7052 };
@@ -185,6 +208,7 @@
 
             // 초기화 함수에 좌표 및 장소 정보 전달
             window.initMap = function () {
+                var mapContainer = document.getElementById('map-container');
                 var map = new google.maps.Map(document.getElementById('map'), {
                     center: incheonLatLng,
                     zoom: 12
@@ -239,8 +263,38 @@
                         showSlide(places.indexOf(place));
                     });
                 });
+
+                // 지도 크기를 조절할 핸들의 초기 위치 설정
+                var handle = document.getElementById('map-resize-handle');
+                var isResizing = false;
+                var lastX;
+
+                // 마우스 다운 이벤트
+                handle.addEventListener('mousedown', function (event) {
+                    isResizing = true;
+                    lastX = event.clientX;
+                });
+
+                // 마우스 이동 이벤트
+                document.addEventListener('mousemove', function (event) {
+                    if (!isResizing) return;
+
+                    var deltaX = event.clientX - lastX;
+                    var newWidth = Math.max(200, mapContainer.offsetWidth + deltaX);
+                    mapContainer.style.width = newWidth + 'px';
+                    lastX = event.clientX;
+
+                    // Google Maps API에서 크기를 조절할 때 맵을 리사이징해야 함
+                    google.maps.event.trigger(map, 'resize');
+                });
+
+                // 마우스 업 이벤트
+                document.addEventListener('mouseup', function () {
+                    isResizing = false;
+                });
             };
         };
+        
         function showContent(location, lat, lng) {
         // Google Maps API를 동기적으로 로드
         var apiKey = 'AIzaSyCrx_u23mxJbGVHE_elP2pWsX7O-9cFNrM';
