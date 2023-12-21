@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- jquery 추가, 필수아님 -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<!-- 필수, SheetJS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.3/xlsx.full.min.js"></script>
+<!--필수, FileSaver savaAs 이용 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
+    <title>추천 장소</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+        }
+
+        #content {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            max-width: 800px;
+            margin: 20px;
+        }
+
+        #slider {
+            overflow: hidden;
+            position: relative;
+            width: 50%;
+            margin-right: 4%;
+            height: 50%;
+        }
+
+        #images {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            width: 100%;
+            flex: 0 0 auto;
+            object-fit: contain;
+            position: relative;
+        }
+
+        .slider-button {
+            position: absolute;
+            font-size: 20px;
+            color: #fff;
+            background-color: #4285f4;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 2;
+        }
+
+        #prev-button {
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        #next-button {
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        #map {
+            flex: 1;
+            height: 500px;
+            margin-left: 4%;
+        }
+        img{
+            width:100%;
+        }
+
+        #buttons {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin: 20px;
+        }
+
+        .button {
+            flex: 1;
+            padding: 15px;
+            cursor: pointer;
+            background-color: #4285f4;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        #slider-header {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .slide-description {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 5px;
+            text-align: center;
+        }
+        #map-container {
+            flex: 1;
+            height: 500px; /* 초기 높이 설정 */
+            margin-left: 4%;
+            overflow: hidden; /* 지도 크기가 조정될 때 내용이 넘치지 않도록 함 */
+            position: relative;
+        }
+
+        #map-resize-handle {
+            width: 10px;
+            height: 10px;
+            background-color: #4285f4;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            cursor: nwse-resize; /* 대각선 리사이징 커서 설정 */
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header">
+        <h1>추천 장소</h1>
+    </div>
+    
+    <div id="buttons">
+        <button class="button" onclick="showContent('부평구', 37.4966725,126.7212089)">부평구</button>
+        <button class="button" onclick="showContent('남동구', 37.4310147,126.726484)">남동구</button>
+        <button class="button" onclick="showContent('미추홀구', 37.452589,126.6646603)">미추홀구</button>
+        <button class="button" onclick="showContent('중구', 37.4760518,126.4685024)">중구</button>
+        <button class="button" onclick="showContent('동구', 37.483194,126.6395359)">동구</button>
+        <button class="button" onclick="showContent('서구', 37.5578549,126.6561702)">서구</button>
+        <button class="button" onclick="showContent('계양구', 37.5572857,126.734707)">계양구</button>
+        <button class="button" onclick="showContent('연수구', 37.3968576,126.648872)">연수구</button>
+        <button class="button" onclick="showContent('강화군', 37.7065047,126.4433977)">강화군</button>
+        <button class="button" onclick="showContent('옹진군', 37.9535884,124.6778869)">옹진군</button>
+    </div>
+
+    <div id="content">
+        <div id="slider">
+            <button class="slider-button" id="prev-button" onclick="showPrevSlide()">❮</button>
+            <div id="slider-header"></div>
+            <div id="images">
+                <!-- 샘플 이미지 추가 -->
+                <div class="slide">
+                    <img src="인천_중구_차이나타운_노도리.jpg" alt="차이나타운">
+                    <div class="slide-description">차이나타운</div>
+                </div>
+                <div class="slide">
+                    <img src="인천_중구_월미도_노도리.jpg" alt="월미도">
+                    <div class="slide-description">월미도</div>
+                </div>
+                <div class="slide">
+                    <img src="https://via.placeholder.com/1200x600?text=Sample+Image+3" alt="Sample Image 3">
+                    <div class="slide-description">그럼 이만</div>
+                </div>
+            </div>
+            <button class="slider-button" id="next-button" onclick="showNextSlide()">❯</button>
+        </div>
+
+        <div id="map-container">
+            <!-- 지도 크기 조정 핸들 -->
+            <div id="map-resize-handle"></div>
+            <!-- 실제 지도 -->
+            <div id="map"></div>
+        </div>
+    </div>
+
+    <script>
+                // 페이지 로드 시 실행될 함수
+                window.onload = function () {
+            // 인천광역시의 위도와 경도
+            var incheonLatLng = { lat: 37.4563, lng: 126.7052 };
+
+            // Google Maps API를 동기적으로 로드
+            var apiKey = 'AIzaSyCrx_u23mxJbGVHE_elP2pWsX7O-9cFNrM';
+            var script = document.createElement('script');
+            script.src = 'https://maps.googleapis.com/maps/api/js?key=' + apiKey + '&callback=initMap';
+            script.defer = true;
+            document.head.appendChild(script);
+
+            // 초기화 함수에 좌표 및 장소 정보 전달
+            window.initMap = function () {
+                var mapContainer = document.getElementById('map-container');
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: incheonLatLng,
+                    zoom: 12
+                });
+
+                // 여러 장소에 대한 정보 배열
+                var places = [
+                    {
+                        lat: 37.4765,
+                        lng: 126.6193,
+                        name: '차이나타운',
+                        description: '다양한 중국 문화와 음식을 즐길 수 있습니다.',
+                        image: '인천_중구_차이나타운_노도리.jpg'
+                    },
+                    {
+                        lat: 37.4645,
+                        lng: 126.6311,
+                        name: '월미도',
+                        description: '갈매기를 볼 수 있는 알 수 없는 곳',
+                        image: '인천_중구_월미도_노도리.jpg'
+                    }
+                ];
+
+                // 각 장소에 대한 마커 생성
+                places.forEach(function (place) {
+                    var markerLocation = { lat: place.lat, lng: place.lng };
+
+                    var marker = new google.maps.Marker({
+                        position: markerLocation,
+                        map: map,
+                        title: place.name
+                    });
+
+                    var infowindow = new google.maps.InfoWindow({
+                        content: '<div><h3>' + place.name + '</h3><p>' + place.description + '</p></div>'
+                    });
+
+                    marker.addListener('click', function () {
+                        infowindow.open(map, marker);
+
+                        // 슬라이더에 이미지 추가 및 이동
+                        var imagesContainer = document.getElementById('images');
+                        var newSlide = document.createElement('div');
+                        newSlide.className = 'slide';
+                        newSlide.innerHTML = '<img src="' + place.image + '" alt="' + place.name + '"><div class="slide-description">' + place.name + '</div>';
+                        imagesContainer.appendChild(newSlide);
+
+                        // 슬라이더 헤더에 현재 선택한 장소 표시
+                        document.getElementById('slider-header').innerText = '< ' + place.name + '의 추천 장소 >';
+
+                        // 이미지를 클릭한 마커의 위치로 이동
+                        showSlide(places.indexOf(place));
+                    });
+                });
+
+                // 지도 크기를 조절할 핸들의 초기 위치 설정
+                var handle = document.getElementById('map-resize-handle');
+                var isResizing = false;
+                var lastX;
+
+                // 마우스 다운 이벤트
+                handle.addEventListener('mousedown', function (event) {
+                    isResizing = true;
+                    lastX = event.clientX;
+                });
+
+                // 마우스 이동 이벤트
+                document.addEventListener('mousemove', function (event) {
+                    if (!isResizing) return;
+
+                    var deltaX = event.clientX - lastX;
+                    var newWidth = Math.max(200, mapContainer.offsetWidth + deltaX);
+                    mapContainer.style.width = newWidth + 'px';
+                    lastX = event.clientX;
+
+                    // Google Maps API에서 크기를 조절할 때 맵을 리사이징해야 함
+                    google.maps.event.trigger(map, 'resize');
+                });
+
+                // 마우스 업 이벤트
+                document.addEventListener('mouseup', function () {
+                    isResizing = false;
+                });
+            };
+        };
+        
+        function showContent(location, lat, lng) {
+        // Google Maps API를 동기적으로 로드
+        var apiKey = 'AIzaSyCrx_u23mxJbGVHE_elP2pWsX7O-9cFNrM';
+        var script = document.createElement('script');
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=' + apiKey + '&callback=initMap';
+        script.defer = true;
+        document.head.appendChild(script);
+
+        // 이동할 좌표 설정
+        var center = { lat: lat, lng: lng };
+
+        // 초기화 함수에 좌표 및 장소 정보 전달
+        window.initMap = function () {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: center,
+                zoom: 12
+            });
+
+            // 여러 장소에 대한 정보 배열
+            var places = [
+                {
+                    lat: 37.4765,
+                    lng: 126.6193,
+                    name: '차이나타운',
+                    description: '다양한 중국 문화와 음식을 즐길 수 있습니다.',
+                    image: '인천_중구_차이나타운_노도리.jpg' // 차이나타운 이미지 파일명
+                },
+                {
+                    lat: 37.4645,
+                    lng: 126.6311,
+                    name: '월미도',
+                    description: '갈매기를 볼 수 있는 알 수 없는 곳',
+                    image: '인천_중구_월미도_노도리.jpg' // 차이나타운 이미지 파일명
+                }
+            ];
+
+            // 각 장소에 대한 마커 생성
+            places.forEach(function (place) {
+                var markerLocation = { lat: place.lat, lng: place.lng };
+
+                var marker = new google.maps.Marker({
+                    position: markerLocation,
+                    map: map,
+                    title: place.name // 마커에 표시할 제목
+                });
+
+                var infowindow = new google.maps.InfoWindow({
+                    content: '<div><h3>' + place.name + '</h3><p>' + place.description + '</p></div>'
+                });
+
+                marker.addListener('click', function () {
+                    infowindow.open(map, marker);
+
+                    // 슬라이더에 이미지 추가 및 이동
+                    var imagesContainer = document.getElementById('images');
+                    var newSlide = document.createElement('div');
+                    newSlide.className = 'slide';
+                    newSlide.innerHTML = '<img src="' + place.image + '" alt="' + place.name + '"><div class="slide-description">' + place.name + '</div>';
+                    imagesContainer.appendChild(newSlide);
+
+                    // 슬라이더 헤더에 현재 선택한 장소 표시
+                    document.getElementById('slider-header').innerText = '< ' + location + '의 추천 장소 >';
+
+                    // 이미지를 클릭한 마커의 위치로 이동
+                    showSlide(places.indexOf(place));
+                });
+            });
+        };
+    }
+
+        // 슬라이더 스크립트 추가
+        var currentIndex = 0;
+        var slides = document.querySelectorAll('.slide');
+        var totalSlides = slides.length;
+
+        function showSlide(index) {
+            if (index >= 0 && index < totalSlides) {
+                currentIndex = index;
+                var translateValue = -currentIndex * 100 + '%';
+                document.getElementById('images').style.transform = 'translateX(' + translateValue + ')';
+            }
+        }
+
+        function showNextSlide() {
+            if (currentIndex < totalSlides - 1) {
+                showSlide(currentIndex + 1);
+            } else {
+                showSlide(0);
+            }
+        }
+
+        function showPrevSlide() {
+            if (currentIndex > 0) {
+                showSlide(currentIndex - 1);
+            } else {
+                showSlide(totalSlides - 1);
+            }
+        }
+
+        
+    </script>
+
+    <!-- 스와이프 라이브러리 추가 -->
+    <script src="https://unpkg.com/swiped/dist/js/swiped.min.js"></script>
+    
+
+</body>
+</html>
