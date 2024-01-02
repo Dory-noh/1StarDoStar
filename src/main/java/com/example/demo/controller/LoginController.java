@@ -42,4 +42,25 @@ public class LoginController {
 		return "redirect:/";
 	}
 	
+	
+	
+	@RequestMapping("/findid")
+    public String findId() {
+		return "findid";		
+	}
+	
+//	@PostMapping("/find")
+//	public String findIdResponse(User user, HttpSession session) {
+//		User findUser = userService.getUser(user);
+//		if(findUser != null && findUser.getEmail().equals(user.getEmail())){
+//			
+//			return "index";
+//		}else
+//			return "findid2";
+//	}
+	
+	@RequestMapping("/findps")
+    public String findPs() {
+		return "findps";		
+	}
 }

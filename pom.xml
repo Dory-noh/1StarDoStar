@@ -11,6 +11,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>osds_incheon</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>osds_incheon</name>
 	<description>osds_incheon</description>
 	<properties>
@@ -61,6 +62,12 @@
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-devtools</artifactId>
 		    <version>3.2.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-tomcat</artifactId>
+		    <version>3.2.1</version>
+		    <scope>provided</scope>
 		</dependency>
 
 
