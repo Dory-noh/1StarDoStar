@@ -4,8 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- jquery 추가, 필수아님 -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!-- 필수, SheetJS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.3/xlsx.full.min.js"></script>
     <!-- 필수, FileSaver savaAs 이용 -->
@@ -16,125 +14,188 @@
     <title>추천 장소</title>
 
     <style>
-        body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+       body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-#header {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-    width: 100%;
-}
+        #header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+        }
 
-#buttons {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
-    margin: 20px;
-}
+        #buttons {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            /* flex-direction: column; */
+            gap: 10px;
+            margin: 20px;
+        }
 
-.button {
-    flex: 1;
-    padding: 15px;
-    cursor: pointer;
-    background-color: #4285f4;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-}
+        .button {
+            flex: 1;
+            padding: 15px;
+            cursor: pointer;
+            background-color: #4285f4;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
 
-#content {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    max-width: 1000px;
-    margin: 20px;
-}
+        #content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center; /* 수정된 부분 */
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
 
-#slider {
-    overflow: hidden;
-    position: relative;
-    width: 40%;
-    margin-right: 4%;
-    max-height: 400px;
-}
-#images {
-    display: flex;
-    width: 100%;
-    max-height: 400px;
-    transition: transform 0.5s ease-in-out;
-}
+        #slider {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            max-width:400px;
+            max-height: 400px;
+            flex: 1;
+            margin: 0 0px;
+            order:1;
+        }
 
-.slide {
-    width: 100%; /* Change width to 100% to make it responsive */
-    flex: 0 0 auto;
-    object-fit: contain;
-    position: relative;
-}
-.slide img {
-    width: 100%; /* Make sure images fill the fixed-width container */
-    height: auto;
-}
+        #images {
+            display: flex;
+            width: 100%;
+            max-height: 300px;
+            overflow: hidden;
+            transition: transform 0.5s ease-in-out;
+            aspect-ratio: 1;
+        }
 
-.slider-button {
-    position: absolute;
-    font-size: 20px;
-    color: #fff;
-    background-color: #4285f4;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    padding: 10px;
-    z-index: 2;
-}
+        .slide {
+            width: 100%;
+            flex: 0 0 auto;
+            object-fit: contain;
+            position: relative;
+            box-sizing: border-box;
+        }
 
-#prev-button {
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-}
+        .slide img {
+            width: 100%;
+            max-width:400px;
+            height: auto;
+            object-fit: cover;
+        }
 
-#next-button {
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-}
+        .slider-button {
+            position: absolute;
+            font-size: 20px;
+            color: #fff;
+            background-color: #4285f4;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 2;
+        }
 
-#map-container {
-    flex: 1;
-    width: 400px;
-    height: 400px;
-    margin-right: 4%;
-    margin-bottom: 4%;
-    overflow: hidden;
-    position: relative;
-}
+        #prev-button {
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
 
-#map-resize-handle {
-    z-index: 1;
-    width: 10px;
-    height: 10px;
-    background-color: #4285f4;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    cursor: nwse-resize;
-}
+        .slide-description {
+            position: absolute;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
 
-#map {
-    width: 100%;
-    height: 100%;
-}
+        #next-button {
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
 
+        #map-container {
+            flex: 1;
+            width: 100%;
+            height: 400px;
+            margin-left: 20px;
+            padding:20px;
+            margin-bottom: 2%;
+            order: 2;
+            overflow: hidden;
+            position: relative;
+            margin: 10px 10px;
+        }
+
+        #map-resize-handle {
+            z-index: 1;
+            width: 10px;
+            height: 10px;
+            background-color: #4285f4;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            cursor: nwse-resize;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+
+        @media (min-width: 600px) {
+            /* Apply styles when the viewport width is 600px or larger */
+            #content {
+                flex-direction: row; /* Keep the horizontal layout */
+            }
+
+            #slider {
+                width: 40%; /* Adjust the width of the slider for larger screens */
+                margin: 0;
+            }
+
+            #map-container {
+                width: 40%; /* Adjust the width of the map container for larger screens */
+                margin: 0;
+            }
+        }
+
+        @media (max-width: 599px) {
+            /* Apply styles when the viewport width is less than 600px */
+            #content {
+                flex-direction: column; /* Change to a vertical layout for smaller screens */
+                align-items:center;
+            }
+
+            #slider,
+            #map-container {
+                width: 100%; /* Take up the full width of the container for smaller screens */
+                margin: 20px 20px 20px 20px; /* Add some margin for better spacing */
+                padding: 20px 20px 20px 20px;
+                order: 1;
+            }
+            #map{
+                height:400px;
+            }
+            .slide{
+                max-width:100%;
+            }
+        }
     </style>
 </head>
 
@@ -153,12 +214,15 @@
         <button class="button" onclick="showContent('서구', 37.5578549, 126.6561702)">서구</button>
         <button class="button" onclick="showContent('계양구', 37.5572857, 126.734707)">계양구</button>
         <button class="button" onclick="showContent('연수구', 37.3968576, 126.648872)">연수구</button>
-        <button class="button" onclick="showContent('강화군', 37.7065047, 126.4433977)">강화군</button>
+        <button class="button" onclick="showContent('강화군', 37.7065, 126.4434)">강화군</button>
         <button class="button" onclick="showContent('옹진군', 37.9535884, 124.6778869)">옹진군</button>
     </div>
 
     <div id="content">
+        
         <div id="slider">
+            <div id="slider-header">추천 장소</div>
+
             <button class="slider-button" id="prev-button" onclick="showPrevSlide()">❮</button>
             <div id="slider-header"></div>
             <div id="images"></div>
@@ -178,14 +242,16 @@
                                 lat: 37.4765,
                                 lng: 126.6193,
                                 name: '차이나타운',
-                                description: '다양한 중국 문화와 음식을 즐길 수 있습니다.',
+                                // '다양한 중국 문화와 음식을 즐길 수 있습니다.'
+                                description: '인천 중구 차이나타운로26번길 12-17',
                                 image: '인천_중구_차이나타운_노도리.jpg'
                             },
                             {
                                 lat: 37.4754,
                                 lng: 126.5978,
                                 name: '월미도',
-                                description: '갈매기를 볼 수 있는 알 수 없는 곳',
+                                // '갈매기를 볼 수 있는 알 수 없는 곳'
+                                description: '인천 중구 북성동1가 98-352',
                                 image: '인천_중구_월미도_노도리.jpg'
                             },
                             {
@@ -193,21 +259,21 @@
                                 lng: 126.7223711,
                                 lat: 37.4909648,
                                 description: '인천광역시 부평구 부평동 534-27 대한빌딩',
-                                image: '인천_중구_월미도_노도리.jpg'
+                                image: '귀요미.jpg'
                             },
                             {
                                 name: '인천미림극장',
                                 lng: 126.6342915,
                                 lat: 37.4755415,
                                 description: '인천광역시 동구 송현동 92-7 미림극장',
-                                image: '인천_중구_월미도_노도리.jpg'
+                                image: '귀요미.jpg'
                             },
                             {
                                 name: '영화공간 주안',
                                 lng: 126.6805874,
                                 lat: 37.461335,
                                 description: '인천광역시 미추홀구 주안동 166-1 메인프라자 7층',
-                                image: '인천_중구_월미도_노도리.jpg'
+                                image: '인천_미추홀구_영화공간주안_노도리.jpg'
                             },
                             {
                                 name: '애관극장',
@@ -221,116 +287,126 @@
                                 lng: 126.666746,
                                 lat: 37.4627256,
                                 description: '인천광역시 미추홀구 도화동 597-126',
-                                image: '인천_중구_월미도_노도리.jpg'
+                                image: '인천_미추홀구_수봉도서관_노도리.jpg'
                             },
                             {
                                 name: '베이비포포',
                                 lng: 126.6811626,
                                 lat: 37.4579989,
                                 description: '인천광역시 미추홀구 주안동 466-23 아인애비뉴 상가 지하2층 2051호',
-                                image: '인천_중구_월미도_노도리.jpg'
+                                image: '인천_미추홀구_베이비포포_노도리.jpg'
                             },
                             {
                                 name: '소소심심',
                                 lng: 126.730316,
                                 lat: 37.507974,
                                 description: '인천광역시 부평구 갈산동 401-5 1층',
-                                image: '인천_중구_월미도_노도리.jpg'
+                                image: '귀요미.jpg'
                             },
                             {
                                 name: '한톨상점',
                                 lng: 126.7239931,
                                 lat: 37.4944681,
                                 description: '인천광역시 부평구 부평동 211-111 1층 한톨상점',
-                                image: '인천_중구_월미도_노도리.jpg'
+                                image: '귀요미.jpg'
                             },
                             {
                                 name: '내꾸하우스',
                                 lng: 126.7273111,
                                 lat: 37.5076229,
                                 description: '인천광역시 부평구 갈산동 392-14 내꾸하우스',
-                                image: '인천_중구_월미도_노도리.jpg'
+                                image: '귀요미.jpg'
                             },
                             {
                                 name: '즐거운다락방 인천구월점',
                                 lng: 126.7027778,
                                 lat: 37.4441651,
                                 description: '인천광역시 남동구 구월동 1472-2 승관빌딩 3층',
-                                image: '인천_중구_월미도_노도리.jpg'
+                                image: '귀요미.jpg'
                             },
                             {
                                 name: '만화스토리',
                                 lng: 126.7035137,
                                 lat: 37.4712742,
                                 description: '인천광역시 부평구 십정동 475-8 센타빌딩 3층 만화스토리',
-                                image: '인천_중구_월미도_노도리.jpg'
+                                image: '귀요미.jpg'
                             },
                             {
                                 name: '마녀의 만화소굴',
                                 lng: 126.7247174,
                                 lat: 37.4929656,
                                 description: '인천광역시 부평구 부평동 193-18',
-                                image: '인천_중구_월미도_노도리.jpg'
+                                image: '귀요미.jpg'
                             },
                             {
                                 name: '플레이만화방 주안점',
                                 lng: 126.6825781,
                                 lat: 37.4630469,
                                 description: '인천광역시 미추홀구 주안동 132-4 2층 플레이만화방',
-                                image: '인천_중구_월미도_노도리.jpg'
+                                image: '귀요미.jpg'
                             },
                             {
                                 name: '24시만화방',
                                 lng: 126.7257179,
                                 lat: 37.4928069,
                                 description: '인천광역시 부평구 부평5동 153-3 신세계음향프라자',
-                                image: '인천_중구_월미도_노도리.jpg'
+                                image: '귀요미.jpg'
                             },
                             {
                                 name: '오거리식당',
                                 lng: 126.6634468,
                                 lat: 37.4680022,
                                 description: '인천광역시 미추홀구 도화동 95-26',
-                                image: '인천_중구_월미도_노도리.jpg'
+                                image: '귀요미.jpg'
                             },
                             {
                                 name: '복생원',
                                 lng: 126.705905,
                                 lat: 37.4668849,
                                 description: '인천광역시 남동구 간석동 238-20',
-                                image: '인천_중구_월미도_노도리.jpg'
+                                image: '귀요미.jpg'
                             },
                             {
                                 name: '바다향',
                                 lng: 126.7196816,
                                 lat: 37.4596099,
                                 description: '인천광역시 남동구 구월동 1248-50 유성빌딩',
-                                image: '인천_중구_월미도_노도리.jpg'
+                                image: '귀요미.jpg'
                             },
                             {
                                 name: '청실홍실 신포본점',
                                 lng: 126.6250118,
                                 lat: 37.4708605,
                                 description: '인천광역시 중구 신생동 2-1',
-                                image: '인천_중구_월미도_노도리.jpg'
+                                image: '귀요미.jpg'
                             },
                             {
                                 name: '팔봉 막국수 등갈비찜',
                                 lng: 126.677055,
                                 lat: 37.4663299,
                                 description: '인천광역시 미추홀구 주안동 26-38',
-                                image: '인천_중구_월미도_노도리.jpg'
+                                image: '귀요미.jpg'
                             },
                             {
                                 name: '수제돈까스 드림식당',
                                 lng: 126.6815182,
                                 lat: 37.4611239,
                                 description: '인천광역시 미추홀구 주안동 157-18 1층 수제돈까스 드림식당',
-                                image: '인천_중구_월미도_노도리.jpg'
+                                image: '귀요미.jpg'
+                            },
+                            {
+                                name: '강릉현대장칼국수 인천점',
+                                lng:126.7376504,
+                                lat:37.5393553,
+                                description: '인천 계양구 계산새로87번길 15 강남오피스텔 108호',
+                                image: '인천_계양구_강릉현대장칼국수인천점_노도리.jpg'
                             }
+            
                         ];
+        var originalPlaces = places;
         var isResizing = false;
-
+        var infowindow;
+        
         function initMap() {
             if (typeof naver !== 'undefined' && typeof naver.maps !== 'undefined') {
                 var center = new naver.maps.LatLng(37.4966725, 126.7212089);
@@ -346,65 +422,135 @@
                 document.head.appendChild(script);
             }
         }
+// Create a single InfoWindow instance
+var infowindow = new naver.maps.InfoWindow();
+var sliderImagesContainer = document.getElementById('images');
+var map;
+var filteredPlaces=[];
 
-        function initializeMap(center) {
-            var map = new naver.maps.Map('map', {
-                center: center,
-                zoom: 12
-            });
+function showAllPlaces(){
+    filteredPlaces=[];
+    places = originalPlaces;
+    initializeSlider();
+}
 
-            places.forEach(function (place) {
-                var markerLocation = new naver.maps.LatLng(place.lat, place.lng);
+function updateMapAndSlider(index){
+    var selectedPlace = places[index];
 
-                var marker = new naver.maps.Marker({
-                    position: markerLocation,
-                    map: map,
-                    title: place.name
-                });
+    var center = new naver.maps.LatLng(selectedPlace.lat,selectedPlace.lng);
+    map.setCenter(center);
 
-                var infowindow = new naver.maps.InfoWindow({
-                    content: '<div><h3>' + place.name + '</h3><p>' + place.description + '</p></div>'
-                });
+    showSlide(index);
+}
 
-                marker.addListener('click', function () {
-                    infowindow.open(map, marker);
 
-                    var imagesContainer = document.getElementById('images');
-                    var newSlide = document.createElement('div');
-                    newSlide.className = 'slide';
-                    newSlide.innerHTML = '<img src="' + place.image + '" alt="' + place.name + '"><div class="slide-description">' + place.name + '</div>';
-                    imagesContainer.appendChild(newSlide);
 
-                    showSlide(places.indexOf(place));
-                });
-            });
+function initializeMap(center) {
+    if (!map){
+    var mapOptions = {
+        center: center,
+        zoom: 12,
+        //인천으로, 지도 축소 영역 제한
+        minZoom: 12,
+        mapTypeControl: true,
+        mapTypeControlOptions: {
+            style: naver.maps.MapTypeControlStyle.BUTTON,
+            position: naver.maps.Position.TOP_RIGHT
+        },
+        zoomControl: true,
+        zoomControlOptions: {
+            style: naver.maps.ZoomControlStyle.SMALL,
+            position: naver.maps.Position.RIGHT_CENTER
+        },
+        scaleControl: true,
+        scaleControlOptions: {
+            position: naver.maps.Position.BOTTOM_RIGHT
+        },
+        logoControlOptions: {
+            position: naver.maps.Position.TOP_LEFT
+        },
+        mapDataControl: true,
+        mapDataControlOptions: {
+            position: naver.maps.Position.BOTTOM_LEFT
+        }
+    };
+    map = new naver.maps.Map('map', mapOptions);
+    setMapMarkers();
+} else{
+    map.setCenter(center);
+}
+
+closeInfoWindow()
+}
+
+function setMapMarkers(){
+    
+places.forEach(function (place,index) {
+    var markerLocation = new naver.maps.LatLng(place.lat, place.lng);
+
+    marker = new naver.maps.Marker({
+        position: markerLocation,
+        map: map,
+        title: place.name,
+    });
+
+    marker.addListener('click', function () {
+            showContent(place.description.split(' ')[1], place.lat, place.lng);
+        });
+});
+}
+function updateMapCenter(index) {
+    var selectedPlace = places[index];
+    var center = new naver.maps.LatLng(selectedPlace.lat, selectedPlace.lng);
+    map.setCenter(center);
+    showInfoWindow(selectedPlace, null); // Display info window for the selected place
+    
+
+}
+
+
+function showInfoWindow(place, marker) {
+    var center = map.getCenter(); // Get the current center of the map
+    var infowindowPosition = new naver.maps.Point(center.x, center.y); // Adjust the y-coordinate to place InfoWindow below the pin
+
+    infowindow.setContent('<div style="text-align: center;"><h3>' +
+         place.name + '</h3><p>' +
+             place.description + 
+             '</p><button onclick="closeInfoWindow()">Close</button></div>');
+             
+// 선택한 장소에 대한 마커 추가
+if (marker) {
+                infowindow.open(map, marker);
+            } else {
+                var center = map.getCenter();
+                var infowindowPosition = new naver.maps.Point(center.x, center.y);
+                infowindow.open(map, infowindowPosition);
+            }
         }
 
-        function initializeSlider() {
+
+
+function initializeSlider() {
     var imagesContainer = document.getElementById('images');
     var totalSlides = places.length;
 
-    // Clear existing slides without transition
-    imagesContainer.style.transition = 'none';
     imagesContainer.innerHTML = '';
 
-    places.forEach(function (place) {
+    places.forEach(function (place, index) {
         var newSlide = document.createElement('div');
         newSlide.className = 'slide';
         newSlide.innerHTML = '<img src="' + place.image + '" alt="' + place.name + '"><div class="slide-description">' + place.name + '</div>';
         imagesContainer.appendChild(newSlide);
+
+        // Add a click event listener to each new slide
+        newSlide.addEventListener('click', function () {
+            showSlide(index);
+        });
     });
 
-    // Update the image size based on the size of the images in the slider
-    var imageWidth = imagesContainer.firstElementChild.offsetWidth;
-    var imageHeight = imagesContainer.firstElementChild.offsetHeight;
-
-    imagesContainer.style.width = imageWidth + 'px';
-    imagesContainer.style.height = '100%';
-
-    currentSlide = 0; // Reset currentSlide to the first slide when a new location is selected
-    showSlide(0); // Show the first slide
+    updateImageSize();
 }
+
 
 
 function updateImageSize() {
@@ -424,46 +570,88 @@ function updateImageSize() {
     showSlide(currentSlide); // Update the current slide after adjusting the size
 }
 
+function showContent(district, lat, lng) {
+    // 기존의 내용을 지우기
+    var imagesContainer = document.getElementById('images');
+    imagesContainer.innerHTML = '';
+
+    // Update the header text
+    var sliderHeader = document.getElementById('slider-header');
+    sliderHeader.innerText = '< '+ district + '의 추천 장소 >';
+
+    if (originalPlaces) {
+        // Filter the originalPlaces array based on the district
+        filteredPlaces = originalPlaces.filter(function (place) {
+            var districRegex =  new RegExp(district);
+            // return place.description.includes(district);
+            return districRegex.test(place.description);
+        });
+
+        // console.log("Filtered Places:", filteredPlaces);
+
+        if (filteredPlaces.length === 0) {
+            showAllPlaces();
+            window.alert('아쉽게도, 아직 해당 지역 추천 장소가 없습니다. \n(기본 장소를 제공합니다.)');
+
+        } else {
+            places = filteredPlaces;
+            initializeSlider();
+
+            var clickedPlaceIndex = findPlaceIndexByLatLng(lat, lng);
+
+            showSlide(clickedPlaceIndex);
+            // console.log("Index", clickedPlaceIndex);
+            // Update the center based on the selected place
+            var selectedPlace = places[clickedPlaceIndex];
+            // console.log("Clicked Index", places[clickedPlaceIndex]);
+            if (selectedPlace) {
+                var center = new naver.maps.LatLng(selectedPlace.lat, selectedPlace.lng);
+                initializeMap(center);
+                showInfoWindow(selectedPlace, null);
+            }
+            
+            
+        }
+        
+        
+    }  
+
+    // // 초기화된 슬라이더의 첫 페이지로 이동
+    // currentSlide = 0;
+    // if (filteredPlaces.length > 0) {
+    //     showSlide(0);
+    // }
+    
+    
+}
 
 
 
 
-// Call initializeSlider function when the DOM content is loaded
+
+
 document.addEventListener('DOMContentLoaded', function () {
+    initializeMap(new naver.maps.LatLng(37.4966725, 126.7212089)); // Initialize map with default location
     initializeSlider();
+
+    closeInfoWindow()
 });
 
 
-
-function showContent(location, lat, lng) {
-    if (typeof naver === 'undefined' || typeof naver.maps === 'undefined') {
-        loadNaverMaps();
+function findPlaceIndexByLatLng(lat, lng) {
+    // Compare latitude and longitude within a certain range (e.g., 0.0001)
+    var tolerance = 0.0001;
+    
+    for (var i = 0; i < places.length; i++) {
+        var place = places[i];
+        if (Math.abs(place.lat - lat) < tolerance && Math.abs(place.lng - lng) < tolerance) {
+            return i;
+        }
     }
 
-    var center = new naver.maps.LatLng(lat, lng);
-    initializeMap(center);
-
-    // Display the recommended location in the slider header
-    document.getElementById('slider-header').innerText = '< ' + location + '의 추천 장소 >';
-
-    // Clear existing slides without transition
-    var imagesContainer = document.getElementById('images');
-    imagesContainer.style.transition = 'none';
-    imagesContainer.innerHTML = '';
-
-    // Initialize the slider with new images
-    initializeSlider();
-
-    // Set the image size based on the size of the images in the slider
-    var imageWidth = imagesContainer.firstElementChild.offsetWidth;
-    var imageHeight = imagesContainer.firstElementChild.offsetHeight;
-
-    imagesContainer.style.width = imageWidth + 'px';
-    imagesContainer.style.height = imageHeight + 'px';
-
-    currentSlide = 0; // Reset currentSlide to the first slide when a new location is selected
-    showSlide(0); // Show the first slide
+    return 0; // Not found
 }
+
 function showSlide(index) {
     var imagesContainer = document.getElementById('images');
     var totalSlides = imagesContainer.childElementCount;
@@ -471,15 +659,26 @@ function showSlide(index) {
     if (index >= 0 && index < totalSlides) {
         currentSlide = index;
 
-        // Adjust the factor (e.g., 200) to control the slide transition distance
         var newTransformValue = (-currentSlide * 400).toFixed(2) + 'px';
-
-        // Apply the transform to the images container
         imagesContainer.style.transform = 'translateX(' + newTransformValue + ')';
+
+        // Show description for the current slide
+        var descriptions = document.querySelectorAll('.slide-description');
+        descriptions.forEach(function (desc, i) {
+            desc.style.display = i === currentSlide ? 'block' : 'none';
+        });
+
+        // Update the map center based on the selected place
+        updateMapCenter(currentSlide);
     }
 }
 
 
+
+    function closeInfoWindow() {
+        // var infowindow = new naver.maps.InfoWindow();
+        infowindow.close();
+    }
 
 
 function showNextSlide() {
@@ -529,6 +728,7 @@ function showPrevSlide() {
         }
 
         loadNaverMaps();
+
     </script>
 
 </body>
