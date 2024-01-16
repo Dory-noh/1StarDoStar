@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>인천 소개</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 20px;
+      background-color: #e0f2f1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #note-container {
+    position: relative;
+    width: 60%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    min-height: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 30px 30px 20px rgba(0, 0, 0, 0.3); /* Add shadow to the southeast */
+    margin-top: 20px;
+    z-index: 1;
+}
+
+    #toggle-buttons {
+  position: fixed;
+  top: 30%;
+  right: 5%; /* 오른쪽 여백 조절 */
+  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  max-width: 150px;
+}
+
+#toggle-buttons button {
+  background-color: #00695c;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin-bottom: 15px; /* 버튼 간격을 줄임 */
+  cursor: pointer;
+  width: 100%; /* 버튼 폭 100%로 고정 */
+}
+@media {
+  #note-container {
+    margin-right: 175px; /* 토글 버튼의 최대 너비 + 여백 */
+    margin-left: 17%; /* Add left margin */
+  }
+}
+
+@media screen and (max-width: 600px) {
+
+    #toggle-buttons {
+        right: 0; /* Adjust the right position if necessary */
+    }
+
+    #language-buttons {
+        position: relative;
+        margin-top: -17%; /* Add margin between note and language buttons */
+        z-index: 2;
+        margin-left: 30%;
+    }
+}
+
+
+
+    h1, h2 {
+      color: #020069;
+    }
+    p {
+      line-height: 1.5;
+      color: #333;
+    }
+    #language-buttons {
+      position: absolute;
+      top: 1%;
+      right: -1.5%;
+      display: flex;
+      z-index: 2; /* 추가된 부분 */
+      width:250px;
+    }
+    #language-buttons button {
+      background-color: #00695c;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+    <h1>인천 소개</h1>
+<div id="note-container">
+  
+
+  <div id="content">
+  <div id="intro">
+    <h2>위치</h2><p>인천의 수리적 위치는 대략 126°37′E, 37°28′N에 해당되는데 이는 한반도의 한가운데이며 황해에 접하여 있고 한강의 하류에 위치해 있다. 대한민국의 수도인 서울과 28 km거리에 위치한 인천은 샌프란시스코, 워싱턴, 스페인 남부지역과 비슷한 위도에 위치해 있다.</p><h2>기후</h2><p>인천은 대륙성 기후에 속하면서도 해안에 위치하여 다른 내륙지방보다는 해양성 기후의 특성도 일부 가지고 있어서, 기온의 연교차가 적은 편이다. 연평균 기온은 12.5℃로서 일 최고 기온의 극값은 38.9℃(1949.8.16), 일 최저 기온의 극값은 -21.0℃(1931.1.11)이다. 강수량은 연 1,134.4mm로 비슷한 위도지역에 비해 적은 편이다. 연평균 풍속은 3.06m/s이며, 주 풍향은 북북서풍이고 다음으로 북, 북서풍이 우세하다. 풍속이 가장 강한 달은 2~ 4월이며, 가장 약한 달은 9월이다. 황사현상이 타 지역에 비해 빈도수가 많고 계속 시간이 길게 나타나고 있으며, 화중지방에서 다가오는 이동성 고기압의 영향으로 남서풍 유입이 많아지면 해상의 안개가 짙어지고 낮 기온 상승을 저지하는 원인이 되기도 한다. 인천지방의 안개 발생빈도는 내륙에 비해 높은 편이며, 4월부터 안개 발생일수가 증가하기 시작하여 5,6월에 가장 많으며  8월 부터 급격히 줄어든다. 인천지방의 2021년 안개일수는 50일 이다.</p><h2>면적</h2><p>인천은 1981년 7월 1일 직할시로 승격 당시 면적은 201.21km²였으며, 1989년 1월 1일 경기도 김포군 계양면(30.9km²)과 옹진군 영종·용유면(72.0km²) 편입으로 면적이 310.83km²가 되었으며, 1995년 1월 1일 광역시로 명칭 변경과 같은 해 3월 1일 강화군(401.3km²), 옹진군(163.6km²), 김포군 검단면(42.2km²)의 통합으로 면적이 955km²가 되었으며, 2000년 이후 공유수면매립 등으로 2005년에는 면적이 994.12km²로 전 국토 면적의 1%로 확장되었으며 2022년 12월 31일 기준 1,067.04km²에 이르고 있다.</p><h2>지형</h2><p>인천의 산지는 마니산(469m)과 계양산(395m), 삼각산(343m) 등 10여개의 산을 제외하고는 해발 300m이내의 구릉성 산지이며 큰 하천의 발달도 없다. 한강으로 유입하는 하천은 굴포천, 청천천, 계산천 등이 있고, 황해로 유입하는 하천으로는 북쪽의 시천천, 공촌천과 남쪽의 승기천, 만수천, 장수천, 운연천 등이 있으며, 굴포천(11.5㎞)을 제외하면 승기천(6.2㎞), 검단천(6.74㎞)등 대부분 하천 연장이 10㎞미만이다. 인천의 해안은 리아스식 해안(rias coast)으로 해안선이 길고 복잡하며 섬이 많다. 인천에는 모두 168개의 섬이 있으며, 이중 128개가 사람이 살지 않는 무인도이다.</p><h2>세계를 향한 동북아의 국제도시</h2><p>인천항의 확장과 인천지하철의 개통(1999.10), 인천국제공항의 개항(2001.3), 공유수면의 매립과 각종 산업·물류단지의 조성, 관광·레저단지와 새로운 주거단지의 건설, 고속화도로의 확대, 교육·문화시설의 증대, 송도신도시 개발과 경제자유구역청의 개청(2003.10), 인천대교개통(2009.10), 청라·영종지구개발 및 도시재생사업, 2014아시안게임 성공 개최 등 인천은 지금도 개발과 성장을 지속하고 있다.</p><p id="intro">출처: <a href="https://www.incheon.go.kr/IC040605">인천광역시 누리집</a></p>
+  </div>
+  <div id="mascots" style="display: none;">
+
+</div>
+</div>
+
+  <div id="language-buttons">
+    <button onclick="changeLanguage('ko')" data-lang="ko">한국어</button>
+    <button onclick="changeLanguage('en')" data-lang="en">English</button>
+    <button onclick="changeLanguage('ja')" data-lang="ja">日本語</button>
+  </div>
+  
+  <div id="toggle-buttons">
+    <button onclick="showContent('intro')" data-section="intro">인천 안내</button>
+    <button onclick="showContent('mascots')" data-section="mascots">인천의 깃대종</button>
+  </div>
+</div>
+
+<script>
+  const contentMap = {
+    'ko': {
+      'intro': '<h2>위치</h2><p>인천의 수리적 위치는 대략 126°37′E, 37°28′N에 해당되는데 이는 한반도의 한가운데이며 황해에 접하여 있고 한강의 하류에 위치해 있다. 대한민국의 수도인 서울과 28 km거리에 위치한 인천은 샌프란시스코, 워싱턴, 스페인 남부지역과 비슷한 위도에 위치해 있다.</p><h2>기후</h2><p>인천은 대륙성 기후에 속하면서도 해안에 위치하여 다른 내륙지방보다는 해양성 기후의 특성도 일부 가지고 있어서, 기온의 연교차가 적은 편이다. 연평균 기온은 12.5℃로서 일 최고 기온의 극값은 38.9℃(1949.8.16), 일 최저 기온의 극값은 -21.0℃(1931.1.11)이다. 강수량은 연 1,134.4mm로 비슷한 위도지역에 비해 적은 편이다. 연평균 풍속은 3.06m/s이며, 주 풍향은 북북서풍이고 다음으로 북, 북서풍이 우세하다. 풍속이 가장 강한 달은 2~ 4월이며, 가장 약한 달은 9월이다. 황사현상이 타 지역에 비해 빈도수가 많고 계속 시간이 길게 나타나고 있으며, 화중지방에서 다가오는 이동성 고기압의 영향으로 남서풍 유입이 많아지면 해상의 안개가 짙어지고 낮 기온 상승을 저지하는 원인이 되기도 한다. 인천지방의 안개 발생빈도는 내륙에 비해 높은 편이며, 4월부터 안개 발생일수가 증가하기 시작하여 5,6월에 가장 많으며  8월 부터 급격히 줄어든다. 인천지방의 2021년 안개일수는 50일 이다.</p><h2>면적</h2><p>인천은 1981년 7월 1일 직할시로 승격 당시 면적은 201.21km²였으며, 1989년 1월 1일 경기도 김포군 계양면(30.9km²)과 옹진군 영종·용유면(72.0km²) 편입으로 면적이 310.83km²가 되었으며, 1995년 1월 1일 광역시로 명칭 변경과 같은 해 3월 1일 강화군(401.3km²), 옹진군(163.6km²), 김포군 검단면(42.2km²)의 통합으로 면적이 955km²가 되었으며, 2000년 이후 공유수면매립 등으로 2005년에는 면적이 994.12km²로 전 국토 면적의 1%로 확장되었으며 2022년 12월 31일 기준 1,067.04km²에 이르고 있다.</p><h2>지형</h2><p>인천의 산지는 마니산(469m)과 계양산(395m), 삼각산(343m) 등 10여개의 산을 제외하고는 해발 300m이내의 구릉성 산지이며 큰 하천의 발달도 없다. 한강으로 유입하는 하천은 굴포천, 청천천, 계산천 등이 있고, 황해로 유입하는 하천으로는 북쪽의 시천천, 공촌천과 남쪽의 승기천, 만수천, 장수천, 운연천 등이 있으며, 굴포천(11.5㎞)을 제외하면 승기천(6.2㎞), 검단천(6.74㎞)등 대부분 하천 연장이 10㎞미만이다. 인천의 해안은 리아스식 해안(rias coast)으로 해안선이 길고 복잡하며 섬이 많다. 인천에는 모두 168개의 섬이 있으며, 이중 128개가 사람이 살지 않는 무인도이다.</p><h2>세계를 향한 동북아의 국제도시</h2><p>인천항의 확장과 인천지하철의 개통(1999.10), 인천국제공항의 개항(2001.3), 공유수면의 매립과 각종 산업·물류단지의 조성, 관광·레저단지와 새로운 주거단지의 건설, 고속화도로의 확대, 교육·문화시설의 증대, 송도신도시 개발과 경제자유구역청의 개청(2003.10), 인천대교개통(2009.10), 청라·영종지구개발 및 도시재생사업, 2014아시안게임 성공 개최 등 인천은 지금도 개발과 성장을 지속하고 있다.</p><p>출처: <a href="https://www.incheon.go.kr/IC040605">인천광역시 누리집</a></p>',
+      'mascots': '<h2>인천 깃대종</h2><p>"인천 지역의 생태, 지리, 사회, 문화적 특성을 반영하는 상징적인 생물로 보호해야 할 필요성이 있는 종"</p><ul><li><h3>저어새 (조류, 천연기념물 제205-1호)</h3><p>‘저어새’는 주걱 모양의 부리가 특징인 국제적 멸종위기종으로 전세계에 4,800여마리가 남아있습니다.이중 80%가 인천에서 번식하고 있어서, 인천은 저어새의 최대 출생지이자 고향으로 종의 보전에 있어서 핵심 지역이라 할 수 있습니다.</p></li><li><h3>금개구리 (양서류)</h3><p>‘금개구리’는 등쪽에 2개의 금색의 띠가 있고, 저지대의 논, 물웅덩이, 습지 등에서 주로 서식하며 주요 관찰지역은 강화군 송해면, 계양구 서운동 등이 있습니다.</p></li><li><h3>점박이물범 (포유류, 천연기념물 제331호)</h3><p>‘점박이물범’은 검은색과 흰색 점무늬가 있고 전세계 개체수가 1,500여 마리로 백령도 하늬해변 등에서 300~400여 마리가 집단 서식하고 있습니다.</p></li><li><h3>흰발농게 (무척추동물)</h3><p>‘흰발농게’는 수컷의 집게다리 한쪽은 흰색으로 매우 크며, 영종도 갯벌의 경우 전국 최대 서식지로 200만 개체가 확인됐습니다.</p></li><li><h3>대청부채 (식물)</h3><p>‘대청부채’는 줄기 모양이 부챗살처럼 벌어지고 꽃은 분홍빛이 도는 보라색이며, 화려한 색채를 띄고 있습니다. 주요 서식지가 대청도이며, ‘대청’이라는 고유 명칭을 사용하고 있어 인천을 대표하는 식물 깃대종으로 선정됐습니다.</p></li></ul><p>출처: <a href="http://m.bokjibang.com/news/articleView.html?idxno=3420">the복지타임즈</a></p>'
+    },
+    'en': {
+      'intro': "<h2>Location</h2><p>The geographical coordinates of Incheon are approximately 126°37′E, 37°28′N, placing it on the western coast of the Korean Peninsula. Adjacent to the Yellow Sea and situated downstream of the Han River, Incheon is located 28 km away from Seoul, the capital of South Korea. Its latitude is similar to that of San Francisco, Washington, and southern Spain.</p><h2>Climate</h2><p>Incheon experiences a continental climate with some maritime characteristics due to its coastal location. This results in a relatively small temperature difference throughout the year. The annual average temperature is 12.5℃, with the highest recorded temperature being 38.9℃ (August 16, 1949), and the lowest recorded temperature being -21.0℃ (January 11, 1931). The precipitation is modest at 1,134.4mm per year, lower than other areas at a similar latitude. The average wind speed is 3.06m/s, with prevailing north-northwesterly winds, followed by north and northwesterly winds. The strongest winds occur from February to April, while September experiences the weakest winds. Incheon is prone to frequent occurrences of yellow dust, which is influenced by the movement of migratory high-pressure systems from China. This can lead to the thickening of maritime fog and hinder the rise in daytime temperatures. The frequency of fog in the Incheon region is higher than inland areas, with the highest occurrence in May and June, sharply decreasing from August onwards. In 2021, Incheon had 50 foggy days.</p><h2>Area</h2><p>Incheon was elevated to a direct-administered city on July 1, 1981, with an initial area of 201.21km². Through the incorporation of Gimpo County's Gyeongyang-myeon (30.9km²) and Ongjin County's Yeongjong and Yongyu-myeon (72.0km²) on January 1, 1989, the area expanded to 310.83km². On January 1, 1995, with the change in designation to a metropolitan city and the integration of Ganghwa-gun (401.3km²), Ongjin-gun (163.6km²), and Gimpo-gun's Geomdan-myeon (42.2km²), the area further increased to 955km². After 2000, due to activities such as the reclamation of shared water surfaces, the area expanded to 994.12km² in 2005, representing 1% of the total national land area. As of December 31, 2022, it stands at 1,067.04km².</p><h2>Topography</h2><p>The mountainous areas of Incheon include Manisan (469m), Gyeongyangsan (395m), Samgaksan (343m), among around ten other mountains. The elevation of these mountains is within 300m above sea level, and there is minimal development of major rivers. Incheon receives inflow from rivers such as Gulpocheon, Cheongcheoncheon, and Gyesancheon flowing into the Han River. Rivers flowing into the Yellow Sea include Sicheoncheon and Gongchoncheon to the north, and Seunggicheon, Mansucheon, Jangsucheon, and Unyeoncheon to the south. Excluding Gulpocheon (11.5 km), most river lengths are less than 10 km, such as Seunggicheon (6.2 km) and Geomdancheon (6.74 km). Incheon's coastline is characterized by a rias coast, resulting in a long and intricate coastline with numerous islands. In total, Incheon has 168 islands, of which 128 are uninhabited.</p><h2>International City in Northeast Asia</h2><p>Incheon continues its development and growth, marked by the expansion of Incheon Port, the opening of the Incheon Subway (October 1999), the inauguration of Incheon International Airport (March 2001), reclamation of shared water surfaces, development of various industrial and logistics complexes, construction of tourism and leisure complexes, and new residential areas. Other milestones include the expansion of expressways, increased educational and cultural facilities, the development of Songdo International Business District, the opening of the Incheon Grand Bridge (October 2009), and the development and urban regeneration projects in Cheongna and Yeongjong areas. Incheon successfully hosted the 2014 Asian Games, solidifying its status as an international city in Northeast Asia.</p><p>Source: <a href='https://www.incheon.go.kr/IC040605'>Incheon Metropolitan City website</a></p>",
+      'mascots': '<h2>Incheon Mascot Species</h2><p>"A symbolic species that reflects the ecological, geographical, social, and cultural characteristics of the Incheon region and requires protection."</p><ul><li><h3>Black-faced Spoonbill (Bird, Natural Monument No. 205-1)</h3><p>the Black-faced Spoonbill, is an internationally endangered species with a distinctive spoon-shaped beak, with only around 4,800 remaining worldwide. Approximately 80% of them breed in Incheon, making it a critical area for the conservation of this species.</p></li><li><h3>Golden Bell Frog (Amphibian)</h3><p>The \'Golden Bell Frog\' has two golden stripes on its back and is mainly found in paddy fields, puddles, and wetlands. Key observation areas include Songhae-myeon in Ganghwa-gun and Seoun-dong in Gyeyang-gu.</p></li><li><h3>Asian Small-Clawed Otter (Mammal, Natural Monument No. 331)</h3><p>The \'Asian Small-Clawed Otter\' has black and white spots and a global population of around 1,500 individuals, with 300-400 of them congregating in places like Hwaseo Beach in Baengnyeongdo.</p></li><li><h3>Chinese Mitten Crab (Invertebrate)</h3><p>The \'Chinese Mitten Crab\' has one very large white claw on its male\'s pincers, and Incheon\'s Yeongjongdo tidal flat is confirmed as the largest habitat with around 2 million individuals.</p></li><li><h3>Large Blue Iris (Plant)</h3><p>The \'Large Blue Iris\' has a spreading stem shape and pink and violet-colored flowers, representing vibrant colors. It is a designated plant mascot for Incheon, mainly found on Daecheongdo.</p></li></ul><p>Source: <a href="http://m.bokjibang.com/news/articleView.html?idxno=3420">the복지타임즈</a></p>'
+    },
+    'ja': {
+      'intro': "<h2>位置</h2><p>仁川の地理座標はおおよそ126°37′E、37°28′Nで、大韓半島の西岸に位置しています。黄海に隣接し、漢江の下流に位置しています。韓国の首都であるソウルからは28 km離れており、緯度はサンフランシスコ、ワシントン、スペインの南部と類似しています。</p><h2>気候</h2><p>仁川は大陸性気候でありながらも海岸に位置しているため、他の内陸部よりも海洋性気候の特徴も一部備えています。年間を通じて気温の変動が少ない傾向があります。年間平均気温は12.5℃で、最高気温の記録は38.9℃（1949年8月16日）、最低気温の記録は-21.0℃（1931年1月11日）です。降水量は年間1,134.4mmで、同じ緯度の他地域よりも少ないです。平均風速は3.06m/sで、北北西風が主で、次いで北、北西風が優勢です。最も風の強いのは2〜4月で、最も弱いのは9月です。仁川は他の地域に比べて黄砂が頻繁に発生し、中国からの移動性の高気圧の影響で南西風が増加すると海上の霧が濃くなり、昼間の気温の上昇を妨げる原因となることがあります。仁川地域の霧の発生頻度は内陸部よりも高く、4月から霧の日数が増加し、5月、6月が最も多く、8月から急激に減少します。2021年、仁川地域の霧の日は50日でした。</p><h2>面積</h2><p>仁川は1981年7月1日に直轄市に昇格された際の面積は201.21km²でした。1989年1月1日には京畿道金浦郡濟陽面（30.9km²）と翁津郡寧浩・龍堆面（72.0km²）の編入により面積が310.83km²に拡大しました。1995年1月1日には都市名が「仁川」に変更され、同年3月1日には江華郡（401.3km²）、翁津郡（163.6km²）、金浦郡檢丹面（42.2km²）の統合により面積が955km²となりました。2000年以降、共有水面の埋め立てなどにより2005年には面積が994.12km²に拡大し、2022年12月31日現在では1,067.04km²に達しています。</p><h2>地勢</h2><p>仁川の山地には万里山（469m）、濟陽山（395m）、三角山（343m）など約10の山が含まれています。これらの山の標高は海抜300m以内であり、大きな河川の発達はありません。漢江に注ぐ川としては屈浦川、淸川川、計算川などがあり、黄海に注ぐ川としては北側の始川川、共村川、南側の昇基川、萬水川、長水川、雲淵川などがあります。屈浦川を除くと、昇基川（6.2km）、檢丹川（6.74km）など、ほとんどの川の長さは10km未満です。仁川の海岸線はリアス式海岸（rias coast）であり、長く入り組んだ海岸線と多くの島が特徴です。仁川には合計で168の島があり、そのうち128の島は無人島です。</p><h2>東北アジアの国際都市</h2><p>仁川は仁川港の拡張、仁川地下鉄の開通（1999年10月）、仁川国際空港の開港（2001年3月）、共有水面の埋め立て、さまざまな産業・物流団地の整備、観光・レジャー団地と新しい住宅地の建設、高速道路の拡張、教育・文化施設の増加、松島新都市の開発と経済自由区域庁の開設（2003年10月）、仁川大橋の開通（2009年10月）、淸羅・映津地区の開発および都市再生事業、2014年アジア大会の成功開催などを含む、発展と成長を続けています。</p> <p>出典: <a href='https://www.incheon.go.kr/IC040605'>仁川広域市ホームページ</a></p>",
+      'mascots': '<h2>仁川のマスコット生物</h2><p>「仁川地域の生態、地理、社会、文化的特性を反映し、保護が必要な象徴的な生物です。」</p><ul><li><h3>クロツラヘラサギ（鳥類、天然記念物第205-1号）</h3><p>最終選定されたクロツラヘラサギは、特徴的なスプーン状のくちばしを持つ国際的に絶滅の危機に瀕した種で、世界に約4,800羽しか残っていません。そのうち約80%が仁川で繁殖しており、この種の保全にとって重要な地域と言えます。</p></li><li><h3>ゴールデンベルフロッグ（両生類）</h3><p>「ゴールデンベルフロッグ」は背中に2本の金色の帯があり、主に田んぼ、水たまり、湿地に生息しています。主要な観察地域には江華郡松海面、桂陽区西雲洞などがあります。</p></li><li><h3>アジアゾウアザラシ（哺乳動物、天然記念物第331号）</h3><p>「アジアゾウアザラシ」は黒と白の斑点があり、世界の個体数は約1,500で、そのうち300～400が白翎島のなどで群れを成しています。</p></li><li><h3>ミツワカニ（無脊椎動物）</h3><p>「ミツワカニ」は一方のハサミが非常に大きな白い色をしており、仁川のヨンジョンド干潟は約200万匹の個体が確認された最大の生息地です。</p></li><li><h3>ラージブルーアイリス（植物）</h3><p>「ラージブルーアイリス」は広がりのある茎の形状と、ピンクと紫色の花が特徴で、鮮やかな色彩を象徴しています。主に大青島に分布しており、仁川の象徴的な植物マスコットに選定されています。</p></li></ul><p>出典： <a href="http://m.bokjibang.com/news/articleView.html?idxno=3420">the복지타임즈</a></p>'
+    }
+  };
+  let lang = 'ko';
+  let section = 'intro'; // 초기값을 'intro'로 설정
+
+  function changeLanguage(newLang) {
+    const contentElement = document.querySelector('#content');
+    lang = newLang;
+    contentElement.innerHTML = contentMap[lang][section];
+
+    // 언어 변경 시 버튼 색상 업데이트
+    updateLanguageButtonColor();
+  }
+
+
+// 초기값 설정
+changeLanguage('ko');  // 한국어로 초기화
+showContent('intro');  // 'intro' 섹션으로 초기화
+
+
+  function showContent(newSection) {
+  const noteContainer = document.querySelector('#note-container');
+  const contentElement = document.querySelector('#content');
+  let introElement = document.getElementById('intro');
+  let mascotsElement = document.getElementById('mascots');
+
+  if (!contentElement) {
+    // If #content doesn't exist, create it
+    const newContentElement = document.createElement('div');
+    newContentElement.id = 'content';
+    noteContainer.appendChild(newContentElement);
+  }
+
+  if (!introElement) {
+    // If #intro doesn't exist, create it
+    introElement = document.createElement('div');
+    introElement.id = 'intro';
+    noteContainer.appendChild(introElement);
+  }
+
+  if (!mascotsElement) {
+    // If #mascots doesn't exist, create it
+    mascotsElement = document.createElement('div');
+    mascotsElement.id = 'mascots';
+    mascotsElement.style.display = 'none'; // Initial style
+    noteContainer.appendChild(mascotsElement);
+  }
+
+  contentElement.innerHTML = contentMap[lang][newSection];
+
+  if (newSection === 'intro') {
+    introElement.style.display = 'block';
+    mascotsElement.style.display = 'none';
+  } else {
+    introElement.style.display = 'none';
+    mascotsElement.style.display = 'block';
+  }
+
+  // 섹션 업데이트
+  section = newSection;
+
+// 토글 버튼 색상 업데이트
+updateToggleButtonColor();
+}
+
+function updateLanguageButtonColor() {
+    // 모든 언어 버튼의 배경색 초기화
+    const languageButtons = document.querySelectorAll('#language-buttons button');
+    languageButtons.forEach(button => {
+        button.style.backgroundColor = '#00695c';
+    });
+
+    // 현재 언어 버튼의 배경색 업데이트
+    const currentLanguageButton = document.querySelector(`#language-buttons button[data-lang="${lang}"]`);
+    if (currentLanguageButton) {
+        currentLanguageButton.style.backgroundColor = '#020069';
+    }
+}
+
+
+  // 초기 로딩 시 버튼 색상 업데이트
+  updateLanguageButtonColor();
+
+  function updateToggleButtonColor() {
+    // 모든 토글 버튼의 배경색 초기화
+    const toggleButtons = document.querySelectorAll('#toggle-buttons button');
+    toggleButtons.forEach(button => {
+        button.style.backgroundColor = '#00695c';
+    });
+
+    // 현재 섹션에 해당하는 토글 버튼의 배경색 업데이트
+    const currentToggleButton = document.querySelector(`#toggle-buttons button[data-section="${section}"]`);
+    if (currentToggleButton) {
+        currentToggleButton.style.backgroundColor = '#020069';
+    }
+}
+
+updateToggleButtonColor();
+
+
+
+
+</script>
+
+</body>
+</html>
